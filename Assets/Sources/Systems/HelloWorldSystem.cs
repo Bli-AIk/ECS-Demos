@@ -4,11 +4,11 @@ namespace Systems
 {
     public class HelloWorldSystem : IInitializeSystem
     {
-        private readonly GameContext _context;
+        private readonly GensoukyoContext _context;
 
         public HelloWorldSystem(Contexts contexts)
         {
-            _context = contexts.game;
+            _context = contexts.gensoukyo;
         }
 
 

@@ -6,27 +6,27 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class GameEntity {
+public partial class GensoukyoEntity {
 
-    public Components.DebugMessageComponent debugMessage { get { return (Components.DebugMessageComponent)GetComponent(GameComponentsLookup.DebugMessage); } }
-    public bool hasDebugMessage { get { return HasComponent(GameComponentsLookup.DebugMessage); } }
+    public Components.DebugMessageComponent debugMessage { get { return (Components.DebugMessageComponent)GetComponent(GensoukyoComponentsLookup.DebugMessage); } }
+    public bool hasDebugMessage { get { return HasComponent(GensoukyoComponentsLookup.DebugMessage); } }
 
     public void AddDebugMessage(string newMessage) {
-        var index = GameComponentsLookup.DebugMessage;
+        var index = GensoukyoComponentsLookup.DebugMessage;
         var component = (Components.DebugMessageComponent)CreateComponent(index, typeof(Components.DebugMessageComponent));
         component.Message = newMessage;
         AddComponent(index, component);
     }
 
     public void ReplaceDebugMessage(string newMessage) {
-        var index = GameComponentsLookup.DebugMessage;
+        var index = GensoukyoComponentsLookup.DebugMessage;
         var component = (Components.DebugMessageComponent)CreateComponent(index, typeof(Components.DebugMessageComponent));
         component.Message = newMessage;
         ReplaceComponent(index, component);
     }
 
     public void RemoveDebugMessage() {
-        RemoveComponent(GameComponentsLookup.DebugMessage);
+        RemoveComponent(GensoukyoComponentsLookup.DebugMessage);
     }
 }
 
@@ -38,15 +38,15 @@ public partial class GameEntity {
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class GameMatcher {
+public sealed partial class GensoukyoMatcher {
 
-    static Entitas.IMatcher<GameEntity> _matcherDebugMessage;
+    static Entitas.IMatcher<GensoukyoEntity> _matcherDebugMessage;
 
-    public static Entitas.IMatcher<GameEntity> DebugMessage {
+    public static Entitas.IMatcher<GensoukyoEntity> DebugMessage {
         get {
             if (_matcherDebugMessage == null) {
-                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.DebugMessage);
-                matcher.componentNames = GameComponentsLookup.componentNames;
+                var matcher = (Entitas.Matcher<GensoukyoEntity>)Entitas.Matcher<GensoukyoEntity>.AllOf(GensoukyoComponentsLookup.DebugMessage);
+                matcher.componentNames = GensoukyoComponentsLookup.componentNames;
                 _matcherDebugMessage = matcher;
             }
 

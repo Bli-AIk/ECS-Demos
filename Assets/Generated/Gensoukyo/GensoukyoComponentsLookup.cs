@@ -6,17 +6,17 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public static class GameComponentsLookup {
+public static class GensoukyoComponentsLookup {
 
+    public const int DebugMessage = 0;
 
-
-    public const int TotalComponents = 0;
+    public const int TotalComponents = 1;
 
     public static readonly string[] componentNames = {
-
+        "DebugMessage"
     };
 
     public static readonly System.Type[] componentTypes = {
-
+        typeof(Components.DebugMessageComponent)
     };
 }

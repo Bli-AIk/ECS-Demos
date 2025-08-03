@@ -2,7 +2,7 @@ using Entitas;
 
 namespace Components
 {
-    [Game]
+    [Gensoukyo]
     public class DebugMessageComponent : IComponent 
     {    
         public string Message;
