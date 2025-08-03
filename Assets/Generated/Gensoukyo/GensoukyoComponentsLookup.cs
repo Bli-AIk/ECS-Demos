@@ -9,14 +9,17 @@
 public static class GensoukyoComponentsLookup {
 
     public const int DebugMessage = 0;
+    public const int TestSayHi = 1;
 
-    public const int TotalComponents = 1;
+    public const int TotalComponents = 2;
 
     public static readonly string[] componentNames = {
-        "DebugMessage"
+        "DebugMessage",
+        "TestSayHi"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(Components.DebugMessageComponent)
+        typeof(Components.DebugMessageComponent),
+        typeof(Components.TestSayHiComponent)
     };
 }

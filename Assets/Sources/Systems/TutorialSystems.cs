@@ -9,6 +9,7 @@ namespace Systems
         {
             Add(new HelloWorldSystem(contexts));
             Add(new DebugMessageSystem(contexts));
+            Add(new TestSayHiSystem(contexts));
         }
 
         public sealed override Entitas.Systems Add(ISystem system)

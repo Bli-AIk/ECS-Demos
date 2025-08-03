@@ -10,11 +10,11 @@ namespace Systems
         {
             _context = contexts.gensoukyo;
         }
-
-
+        
         public void Initialize()
         {
-            _context.CreateEntity().AddDebugMessage("hello world");
+            _context.CreateEntity().AddDebugMessage("hello world", "hello there");
+            _context.CreateEntity().AddTestSayHi("hiiiiii~");
         }
     }
 }

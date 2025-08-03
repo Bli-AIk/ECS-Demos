@@ -1,29 +1,27 @@
 using System.Collections.Generic;
-using Components;
 using Entitas;
 using UnityEngine;
 
 namespace Systems
 {
-    public class DebugMessageSystem : ReactiveSystem<GensoukyoEntity>
+    public class TestSayHiSystem : ReactiveSystem<GensoukyoEntity>
     {
-        public DebugMessageSystem(Contexts contexts) : base(contexts.gensoukyo) { }
-        
+        public TestSayHiSystem(Contexts contexts) : base(contexts.gensoukyo) { }
+
         protected override ICollector<GensoukyoEntity> GetTrigger(IContext<GensoukyoEntity> context)
         {
-            //只关注带有 DebugMessageComponent 的实体
-            return context.CreateCollector(GensoukyoMatcher.DebugMessage);
+            return context.CreateCollector(GensoukyoMatcher.TestSayHi);
+
         }
         protected override bool Filter(GensoukyoEntity entity)
         {
-            return entity.hasDebugMessage;
+            return entity.hasTestSayHi;
         }
         protected override void Execute(List<GensoukyoEntity> entities)
         {
             foreach (var e in entities)
             {
-                Debug.Log(e.debugMessage.Message1);
-                Debug.Log(e.debugMessage.Message2);
+                Debug.Log(e.testSayHi.TestText);
             }
         }
     }

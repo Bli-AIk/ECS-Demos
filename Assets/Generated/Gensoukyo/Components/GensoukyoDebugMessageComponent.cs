@@ -11,17 +11,19 @@ public partial class GensoukyoEntity {
     public Components.DebugMessageComponent debugMessage { get { return (Components.DebugMessageComponent)GetComponent(GensoukyoComponentsLookup.DebugMessage); } }
     public bool hasDebugMessage { get { return HasComponent(GensoukyoComponentsLookup.DebugMessage); } }
 
-    public void AddDebugMessage(string newMessage) {
+    public void AddDebugMessage(string newMessage1, string newMessage2) {
         var index = GensoukyoComponentsLookup.DebugMessage;
         var component = (Components.DebugMessageComponent)CreateComponent(index, typeof(Components.DebugMessageComponent));
-        component.Message = newMessage;
+        component.Message1 = newMessage1;
+        component.Message2 = newMessage2;
         AddComponent(index, component);
     }
 
-    public void ReplaceDebugMessage(string newMessage) {
+    public void ReplaceDebugMessage(string newMessage1, string newMessage2) {
         var index = GensoukyoComponentsLookup.DebugMessage;
         var component = (Components.DebugMessageComponent)CreateComponent(index, typeof(Components.DebugMessageComponent));
-        component.Message = newMessage;
+        component.Message1 = newMessage1;
+        component.Message2 = newMessage2;
         ReplaceComponent(index, component);
     }
 
