@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int SourcesDebugMessage = 0;
+    public const int DebugMessage = 0;
 
     public const int TotalComponents = 1;
 
     public static readonly string[] componentNames = {
-        "SourcesDebugMessage"
+        "DebugMessage"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(Sources.DebugMessageComponent)
+        typeof(Components.DebugMessageComponent)
     };
 }

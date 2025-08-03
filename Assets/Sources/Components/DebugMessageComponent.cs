@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace Sources
+namespace Components
 {
     [Game]
     public class DebugMessageComponent : IComponent 
