@@ -1,19 +1,17 @@
+using Systems.InputSystems;
 using Systems.MovementSystems;
 using Systems.ViewSystems;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    private Contexts _contexts;
     private Entitas.Systems _systems;
 
     private void Start()
     {
-        var contexts = Contexts.sharedInstance;
-
-        _systems = new Feature("Systems")
-            .Add(new ViewSystems(contexts))
-            .Add(new MovementSystems(contexts));
-
+        _contexts = Contexts.sharedInstance;
+        _systems = CreateSystems(_contexts);
         _systems.Initialize();
     }
 
@@ -21,5 +19,13 @@ public class GameController : MonoBehaviour
     {
         _systems.Execute();
         _systems.Cleanup();
+    }
+
+    private static Entitas.Systems CreateSystems(Contexts contexts)
+    {
+        return new Feature("Systems")
+            .Add(new InputSystems(contexts))
+            .Add(new MovementSystems(contexts))
+            .Add(new ViewSystems(contexts));
     }
 }
