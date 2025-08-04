@@ -9,3 +9,7 @@
 ## 记录
 - 主要分支使用 Entitas 1.14.1；安装说明见 [#1.14.1 临时设置指南](https://github.com/sschmid/Entitas/issues/1055) 与 [#【已解决】查看任何实体时出现异常和损坏的检查器](https://github.com/sschmid/Entitas/issues/1067)
 - Jenny.properties 使用 [Match One](https://github.com/sschmid/Match-One) 的配置，但 `Jenny.SearchPaths` 中第三行修改为 `Assets/Plugins/Entitas` 以于 `Plugins` 文件夹加载 `Entitas`.
+
+## 运行环境
+Unity 2021.3.45f1 LTS
+btw I use Arch
