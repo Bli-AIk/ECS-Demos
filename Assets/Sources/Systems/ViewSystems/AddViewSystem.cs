@@ -6,7 +6,8 @@ using UnityEngine;
 namespace Systems
 {
     /// <summary>
-    /// 识别拥有 SpriteComponent 但尚未分配关联 GameObject 的 Entities
+    /// 识别拥有 SpriteComponent 但尚未分配关联 GameObject 的 Entities；
+    /// 为其关联 GameObject
     /// </summary>
     public class AddViewSystem :  ReactiveSystem<GameEntity>
     {
@@ -30,10 +31,10 @@ namespace Systems
         {
             foreach (var entity in entities)
             {
-                var obj = new GameObject("Game View");
-                obj.transform.SetParent(_viewContainer, false);
-                entity.AddView(obj);
-                obj.Link(entity);
+                var gameObject = new GameObject("Game View");
+                gameObject.transform.SetParent(_viewContainer, false);
+                entity.AddView(gameObject);
+                gameObject.Link(entity);
             }
         }
     }
