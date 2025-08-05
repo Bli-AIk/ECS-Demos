@@ -8,15 +8,27 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
+    public const int Direction = 0;
+    public const int GridIndex = 1;
+    public const int SnakeBody = 2;
+    public const int SnakeHead = 3;
+    public const int View = 4;
 
-
-    public const int TotalComponents = 0;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
-
+        "Direction",
+        "GridIndex",
+        "SnakeBody",
+        "SnakeHead",
+        "View"
     };
 
     public static readonly System.Type[] componentTypes = {
-
+        typeof(Sources.Components.DirectionComponent),
+        typeof(Sources.Components.GridIndexComponent),
+        typeof(Sources.Components.SnakeBodyComponent),
+        typeof(Sources.Components.SnakeHeadComponent),
+        typeof(Sources.Components.ViewComponent)
     };
 }
