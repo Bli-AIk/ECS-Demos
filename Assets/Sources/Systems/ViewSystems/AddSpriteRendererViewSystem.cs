@@ -3,7 +3,7 @@ using Entitas;
 using Entitas.Unity;
 using UnityEngine;
 
-namespace Sources.Systems
+namespace Sources.Systems.ViewSystems
 {
     public class AddSpriteRendererViewSystem: ReactiveSystem<GameEntity>
     {

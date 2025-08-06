@@ -3,7 +3,7 @@ using System.Linq;
 using Entitas;
 using UnityEngine;
 
-namespace Sources.Systems
+namespace Sources.Systems.InputSystems
 {
     public class SnakeInputSystem : IExecuteSystem
     {

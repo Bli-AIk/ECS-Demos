@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace Sources.Systems
+namespace Sources.Systems.ViewSystems
 {
     public class ViewSystems : Feature
     {

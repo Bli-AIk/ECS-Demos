@@ -1,7 +1,7 @@
 using Entitas;
 using UnityEngine;
 
-namespace Sources.Systems
+namespace Sources.Systems.InitializeSystems
 {
     public class GameInitializeSystem : IInitializeSystem
     {

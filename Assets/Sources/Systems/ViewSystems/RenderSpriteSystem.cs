@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
 
-namespace Sources.Systems
+namespace Sources.Systems.ViewSystems
 {
     public class RenderSpriteSystem : ReactiveSystem<GameEntity>
     {
@@ -30,6 +30,7 @@ namespace Sources.Systems
                 }
 
                 spriteRenderer.sprite = Resources.Load<Sprite>(entity.sprite.Name);
+                entity.view.GameObject.transform.localScale = 0.75f * Vector3.one;
             }
         }
     }

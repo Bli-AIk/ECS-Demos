@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace Sources.Systems
+namespace Sources.Systems.InputSystems
 {
     public class InputSystems : Feature
     {

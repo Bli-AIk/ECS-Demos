@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
 
-namespace Sources.Systems
+namespace Sources.Systems.ViewSystems
 {
     public class RenderPositionSystem : ReactiveSystem<GameEntity>
     {
