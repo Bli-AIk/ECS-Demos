@@ -7,11 +7,27 @@ namespace Sources.Systems.InputSystems
 {
     public class SnakeInputSystem : IExecuteSystem
     {
+        private static readonly Dictionary<KeyCode, Direction> KeyDirectionMap;
         private readonly GameContext _context;
 
         public SnakeInputSystem(Contexts contexts)
         {
             _context = contexts.game;
+        }
+
+        static SnakeInputSystem()
+        {
+            KeyDirectionMap = new Dictionary<KeyCode, Direction>
+            {
+                { KeyCode.UpArrow, Direction.Up },
+                { KeyCode.W, Direction.Up },
+                { KeyCode.DownArrow, Direction.Down },
+                { KeyCode.S, Direction.Down },
+                { KeyCode.LeftArrow, Direction.Left },
+                { KeyCode.A, Direction.Left },
+                { KeyCode.RightArrow, Direction.Right },
+                { KeyCode.D, Direction.Right }
+            };
         }
 
         public void Execute()
@@ -25,33 +41,16 @@ namespace Sources.Systems.InputSystems
 
         private static void MoveSnake(GameEntity[] tileObjectEntities)
         {
-            var snakeHeadEntity =
-                tileObjectEntities?.FirstOrDefault(entity => entity.tileObject.Type == TileObjectType.SnakeHead);
-            if (snakeHeadEntity == null)
-            {
-                return;
-            }
+            var snakeHeadEntities = tileObjectEntities
+                    .Where(entity => entity.tileObject.Type == TileObjectType.SnakeHead)
+                    .ToArray();
 
-            var keyDirectionMap = new Dictionary<KeyCode, Direction>
+            foreach (var pair in KeyDirectionMap.Where(pair => Input.GetKeyDown(pair.Key)))
             {
-                { KeyCode.UpArrow, Direction.Up },
-                { KeyCode.W, Direction.Up },
-                { KeyCode.DownArrow, Direction.Down },
-                { KeyCode.S, Direction.Down },
-                { KeyCode.LeftArrow, Direction.Left },
-                { KeyCode.A, Direction.Left },
-                { KeyCode.RightArrow, Direction.Right },
-                { KeyCode.D, Direction.Right }
-            };
-
-            foreach (var pair in keyDirectionMap)
-            {
-                if (!Input.GetKeyDown(pair.Key))
+                foreach (var snakeHeadEntity in snakeHeadEntities)
                 {
-                    return;
+                    snakeHeadEntity.ReplaceDirection(pair.Value);
                 }
-
-                snakeHeadEntity.ReplaceDirection(pair.Value);
                 break;
             }
         }

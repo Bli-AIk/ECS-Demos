@@ -29,7 +29,8 @@ namespace Sources
             return new Feature("Systems")
                 .Add(new InitializeSystems(contexts))
                 .Add(new ViewSystems(contexts))
-                .Add(new InputSystems(contexts));
+                .Add(new InputSystems(contexts))
+                .Add(new LoopSystems(contexts));
         }
     }
 }

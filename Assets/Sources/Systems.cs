@@ -1,6 +1,7 @@
 using Entitas;
 using Sources.Systems.InitializeSystems;
 using Sources.Systems.InputSystems;
+using Sources.Systems.LoopSystems;
 using Sources.Systems.ViewSystems;
 
 namespace Sources
@@ -37,6 +38,19 @@ namespace Sources
         public InputSystems(Contexts contexts) : base("Input Systems")
         {
             Add(new SnakeInputSystem(contexts));
+        }
+
+        public sealed override Entitas.Systems Add(ISystem system)
+        {
+            return base.Add(system);
+        }
+    }
+
+    public class LoopSystems : Feature
+    {
+        public LoopSystems(Contexts contexts) : base("Loop Systems")
+        {
+            Add(new GameLoopSystem(contexts));
         }
 
         public sealed override Entitas.Systems Add(ISystem system)
