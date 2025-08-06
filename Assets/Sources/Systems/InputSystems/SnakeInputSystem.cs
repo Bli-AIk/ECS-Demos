@@ -25,7 +25,8 @@ namespace Sources.Systems.InputSystems
 
         private static void MoveSnake(GameEntity[] tileObjectEntities)
         {
-            var snakeHeadEntity = tileObjectEntities?.FirstOrDefault(entity => entity.tileObject.Type == TileObjectType.SnakeHead);
+            var snakeHeadEntity =
+                tileObjectEntities?.FirstOrDefault(entity => entity.tileObject.Type == TileObjectType.SnakeHead);
             if (snakeHeadEntity == null)
             {
                 return;
