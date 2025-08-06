@@ -23,6 +23,12 @@ namespace Sources.Components
     }
 
     [Game]
+    public class SpriteComponent : IComponent
+    {
+        public string Name;
+    }
+
+    [Game]
     public class SnakeHeadComponent : IComponent { }
 
     [Game]
