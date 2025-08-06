@@ -11,19 +11,17 @@ public partial class GameEntity {
     public Sources.Components.GridIndexComponent gridIndex { get { return (Sources.Components.GridIndexComponent)GetComponent(GameComponentsLookup.GridIndex); } }
     public bool hasGridIndex { get { return HasComponent(GameComponentsLookup.GridIndex); } }
 
-    public void AddGridIndex(int newX, int newY) {
+    public void AddGridIndex(UnityEngine.Vector2Int newPosition) {
         var index = GameComponentsLookup.GridIndex;
         var component = (Sources.Components.GridIndexComponent)CreateComponent(index, typeof(Sources.Components.GridIndexComponent));
-        component.X = newX;
-        component.Y = newY;
+        component.Position = newPosition;
         AddComponent(index, component);
     }
 
-    public void ReplaceGridIndex(int newX, int newY) {
+    public void ReplaceGridIndex(UnityEngine.Vector2Int newPosition) {
         var index = GameComponentsLookup.GridIndex;
         var component = (Sources.Components.GridIndexComponent)CreateComponent(index, typeof(Sources.Components.GridIndexComponent));
-        component.X = newX;
-        component.Y = newY;
+        component.Position = newPosition;
         ReplaceComponent(index, component);
     }
 

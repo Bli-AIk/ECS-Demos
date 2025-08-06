@@ -6,8 +6,7 @@ namespace Sources.Components
     [Game]
     public class GridIndexComponent : IComponent
     {
-        public int X;
-        public int Y;
+        public Vector2Int Position;
     }
 
     [Game]
@@ -29,8 +28,9 @@ namespace Sources.Components
     }
 
     [Game]
-    public class SnakeHeadComponent : IComponent { }
+    public class TileObjectComponent : IComponent
+    {
+        public TileObjectType Type;
+    }
 
-    [Game]
-    public class SnakeBodyComponent : IComponent { }
 }

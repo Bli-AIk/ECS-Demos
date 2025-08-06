@@ -5,22 +5,28 @@ using UnityEngine;
 
 namespace Sources.Systems
 {
-    public class InputSystem : IExecuteSystem
+    public class SnakeInputSystem : IExecuteSystem
     {
         private readonly GameContext _context;
 
-        public InputSystem(Contexts contexts)
+        public SnakeInputSystem(Contexts contexts)
         {
             _context = contexts.game;
         }
 
         public void Execute()
         {
-            var snakeHead = _context
-                .GetGroup(GameMatcher.AllOf(GameMatcher.SnakeHead, GameMatcher.Direction))
-                .GetSingleEntity();
+            var tileObjectEntities = _context
+                .GetGroup(GameMatcher.AllOf(GameMatcher.TileObject, GameMatcher.Direction))
+                .GetEntities();
 
-            if (snakeHead == null)
+            MoveSnake(tileObjectEntities);
+        }
+
+        private static void MoveSnake(GameEntity[] tileObjectEntities)
+        {
+            var snakeHeadEntity = tileObjectEntities?.FirstOrDefault(entity => entity.tileObject.Type == TileObjectType.SnakeHead);
+            if (snakeHeadEntity == null)
             {
                 return;
             }
@@ -44,7 +50,7 @@ namespace Sources.Systems
                     return;
                 }
 
-                snakeHead.ReplaceDirection(pair.Value);
+                snakeHeadEntity.ReplaceDirection(pair.Value);
                 break;
             }
         }

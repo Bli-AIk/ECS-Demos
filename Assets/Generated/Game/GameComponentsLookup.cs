@@ -10,28 +10,25 @@ public static class GameComponentsLookup {
 
     public const int Direction = 0;
     public const int GridIndex = 1;
-    public const int SnakeBody = 2;
-    public const int SnakeHead = 3;
-    public const int Sprite = 4;
-    public const int View = 5;
+    public const int Sprite = 2;
+    public const int TileObject = 3;
+    public const int View = 4;
 
-    public const int TotalComponents = 6;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
         "Direction",
         "GridIndex",
-        "SnakeBody",
-        "SnakeHead",
         "Sprite",
+        "TileObject",
         "View"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Sources.Components.DirectionComponent),
         typeof(Sources.Components.GridIndexComponent),
-        typeof(Sources.Components.SnakeBodyComponent),
-        typeof(Sources.Components.SnakeHeadComponent),
         typeof(Sources.Components.SpriteComponent),
+        typeof(Sources.Components.TileObjectComponent),
         typeof(Sources.Components.ViewComponent)
     };
 }
