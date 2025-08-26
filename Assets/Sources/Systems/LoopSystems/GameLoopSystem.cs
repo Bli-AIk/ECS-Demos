@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Entitas;
 using UnityEngine;
 
@@ -6,16 +7,17 @@ namespace Sources.Systems.LoopSystems
 {
     public class GameLoopSystem : IExecuteSystem
     {
-        private const float MaxTime = 1;
-        private float _timer;
+        private const float MaxTime = 0.5f;
         private readonly GameContext _context;
+        private Vector2Int _lastPosition;
+        private float _timer;
 
         public GameLoopSystem(Contexts contexts)
         {
             _context = contexts.game;
             _timer = MaxTime;
         }
-        
+
         public void Execute()
         {
             if (_timer > 0)
@@ -32,34 +34,44 @@ namespace Sources.Systems.LoopSystems
         private void GameLoop()
         {
             var tileObjects = _context
-                .GetGroup(GameMatcher.AllOf(GameMatcher.TileObject, GameMatcher.Direction))
-                .GetEntities();
+                .GetGroup(GameMatcher.AllOf(GameMatcher.TileObject))
+                .GetEntities()
+                .Where(entity =>entity.hasTileObject &&  entity.tileObject.Type is TileObjectType.SnakeHead or TileObjectType.SnakeBody);
 
+            
             foreach (var tileObject in tileObjects)
             {
                 switch (tileObject.tileObject.Type)
                 {
-                    case TileObjectType.None:
-                        break;
                     case TileObjectType.SnakeHead:
+                    {
                         MoveSnakeHead(tileObject);
+                        HandleFoodConsumption(tileObject);
                         break;
+                    }
                     case TileObjectType.SnakeBody:
+                    {
+                        MoveSnakeBody(tileObject);
                         break;
+                    }
+                    case TileObjectType.None:
                     case TileObjectType.Food:
-                        break;
                     case TileObjectType.Obstacle:
-                        break;
                     default:
+                    {
                         throw new ArgumentOutOfRangeException();
+                    }
                 }
             }
-            
-            
         }
 
-        private static void MoveSnakeHead(GameEntity snakeHead)
+        private void MoveSnakeHead(GameEntity snakeHead)
         {
+            if (!snakeHead.hasDirection)
+            {
+                return;
+            }
+
             var snakeHeadPosition = snakeHead.gridIndex.Position;
             var movePosition = snakeHead.direction.Value switch
             {
@@ -70,6 +82,36 @@ namespace Sources.Systems.LoopSystems
                 _ => throw new ArgumentOutOfRangeException()
             };
             snakeHead.ReplaceGridIndex(snakeHeadPosition + movePosition);
+            _lastPosition = snakeHeadPosition;
+        }
+
+        private void HandleFoodConsumption(GameEntity snakeHead)
+        {
+            var foods = _context
+                .GetGroup(GameMatcher.AllOf(GameMatcher.TileObject))
+                .GetEntities()
+                .Where(entity => entity.hasTileObject && entity.tileObject.Type == TileObjectType.Food);
+
+            foreach (var food in foods)
+            {
+                if (food.gridIndex.Position != snakeHead.gridIndex.Position)
+                {
+                    continue;
+                }
+
+                food.Destroy();
+
+                var newBody = _context.CreateEntity();
+                newBody.AddTileObject(TileObjectType.SnakeBody);
+                newBody.AddGridIndex(_lastPosition);
+            }
+        }
+
+        private void MoveSnakeBody(GameEntity snakeBody)
+        {
+            var newLastPosition = snakeBody.gridIndex.Position;
+            snakeBody.ReplaceGridIndex(_lastPosition);
+            _lastPosition = newLastPosition;
         }
     }
 }

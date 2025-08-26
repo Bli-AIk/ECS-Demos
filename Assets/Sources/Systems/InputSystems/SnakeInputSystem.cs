@@ -42,8 +42,7 @@ namespace Sources.Systems.InputSystems
         private static void MoveSnake(GameEntity[] tileObjectEntities)
         {
             var snakeHeadEntities = tileObjectEntities
-                    .Where(entity => entity.tileObject.Type == TileObjectType.SnakeHead)
-                    .ToArray();
+                    .Where(entity => entity.tileObject.Type == TileObjectType.SnakeHead);
 
             foreach (var pair in KeyDirectionMap.Where(pair => Input.GetKeyDown(pair.Key)))
             {
